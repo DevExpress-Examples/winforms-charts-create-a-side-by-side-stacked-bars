@@ -1,67 +1,70 @@
 using System;
+using System.Data;
 using System.Windows.Forms;
 using DevExpress.XtraCharts;
 // ...
 
 namespace SideBySideStackedBarChart {
     public partial class Form1 : Form {
+        ChartControl chart;
         public Form1() {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
             // Create a new chart.
-            ChartControl stackedBarChart = new ChartControl();
+            chart = new ChartControl();
+            chart.Dock = DockStyle.Fill;
+            this.Controls.Add(chart);
 
-            // Create four side-by-side stacked bar series.
-            Series series1 = new Series("Series 1", ViewType.SideBySideStackedBar);
-            Series series2 = new Series("Series 2", ViewType.SideBySideStackedBar);
-            Series series3 = new Series("Series 3", ViewType.SideBySideStackedBar);
-            Series series4 = new Series("Series 4", ViewType.SideBySideStackedBar);
+            // Bind the chart to a data source.
+            // Specify data members that the series template uses to
+            // obtain series names, arguments, and values.
+            chart.DataSource = GetChartData();
+            chart.SeriesTemplate.SeriesDataMember = "Month";
+            chart.SeriesTemplate.ArgumentDataMember = "Section";
+            chart.SeriesTemplate.ValueDataMembers.AddRange(new string[] { "Value" });
 
-            // Add points to them
-            series1.Points.Add(new SeriesPoint("A", 10));
-            series1.Points.Add(new SeriesPoint("B", 12));
-            series1.Points.Add(new SeriesPoint("C", 14));
-            series1.Points.Add(new SeriesPoint("D", 17));
+            // Assign the Side-by-Side Stacked Bar series view to generated series.
+            SideBySideStackedBarSeriesView view = new SideBySideStackedBarSeriesView();
+            chart.SeriesTemplate.View = view;
+            view.BarWidth = 0.6;
 
-            series2.Points.Add(new SeriesPoint("A", 15));
-            series2.Points.Add(new SeriesPoint("B", 18));
-            series2.Points.Add(new SeriesPoint("C", 25));
-            series2.Points.Add(new SeriesPoint("D", 33));
+            //Enable point labels and format their text.
+            chart.SeriesTemplate.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            chart.SeriesTemplate.Label.TextPattern = "{V}";
 
-            series3.Points.Add(new SeriesPoint("A", 11));
-            series3.Points.Add(new SeriesPoint("B", 13));
-            series3.Points.Add(new SeriesPoint("C", 15));
-            series3.Points.Add(new SeriesPoint("D", 18));
+            // Customize axes.
+            XYDiagram diagram = chart.Diagram as XYDiagram;
+            diagram.AxisX.Tickmarks.MinorVisible = false;
+            diagram.AxisY.WholeRange.AlwaysShowZeroLevel = false;
 
-            series4.Points.Add(new SeriesPoint("A", 16));
-            series4.Points.Add(new SeriesPoint("B", 19));
-            series4.Points.Add(new SeriesPoint("C", 26));
-            series4.Points.Add(new SeriesPoint("D", 34));
-
-            // Add all series to the chart.
-            stackedBarChart.Series.AddRange(new Series[] { series1, series2, series3, series4 });
-
-            // Group the first two series under the same stack.
-            ((SideBySideStackedBarSeriesView)series1.View).StackedGroup = 0;
-            ((SideBySideStackedBarSeriesView)series2.View).StackedGroup = 0;
-
-            // Access the type-specific options of the diagram.
-            ((XYDiagram)stackedBarChart.Diagram).EnableAxisXZooming = true;
-
-            // Hide the legend (if necessary).
-            stackedBarChart.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
-
-            // Add a title to the chart (if necessary).
-            stackedBarChart.Titles.Add(new ChartTitle());
-            stackedBarChart.Titles[0].Text = "A Side-By-Side Stacked Bar Chart";
-            stackedBarChart.Titles[0].WordWrap = true;
-
-            // Add the chart to the form.
-            stackedBarChart.Dock = DockStyle.Fill;
-            this.Controls.Add(stackedBarChart);
+            chart.BoundDataChanged += Chart_BoundDataChanged;
         }
 
+        private void Chart_BoundDataChanged(object sender, EventArgs e) {
+            foreach (Series series in chart.Series) {
+                if (series.Points.Count > 0) {
+                    DataRowView row = series.Points[0].Tag as DataRowView;
+                    ((ISupportStackedGroup)series.View).StackedGroup = row["Group"];
+                }
+            }
+        }
+
+        public DataTable GetChartData() {
+            DataTable table = new DataTable();
+            table.Columns.Add("Month", typeof(string));
+            table.Columns.Add("Section", typeof(string));
+            table.Columns.Add("Value", typeof(int));
+            table.Columns.Add("Group", typeof(int));
+
+            table.Rows.Add(new object[] { "January", "Section1", 10, 1 });
+            table.Rows.Add(new object[] { "January", "Section2", 20, 1 });
+            table.Rows.Add(new object[] { "February", "Section1", 20, 1 });
+            table.Rows.Add(new object[] { "February", "Section2", 30, 2 });
+            table.Rows.Add(new object[] { "March", "Section1", 15, 2 });
+            table.Rows.Add(new object[] { "March", "Section2", 25, 1 });
+            return table;
+        }
     }
 }

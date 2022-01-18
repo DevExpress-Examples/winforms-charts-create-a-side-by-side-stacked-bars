@@ -3,14 +3,27 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E2092)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
 
-* [Form1.cs](./CS/SideBySideStackedBarChart/Form1.cs) (VB: [Form1.vb](./VB/SideBySideStackedBarChart/Form1.vb))
-<!-- default file list end -->
-# How to create a Side-by-Side Stacked Bar chart
+# Chart Control for WinForms - How to Create a Side-by-Side Stacked Bar Chart
 
 The following example demonstrates how to create a [Side-by-Side Stacked Bar](https://docs.devexpress.com/WindowsForms/7565/controls-and-libraries/chart-control/series-views/2d-series-views/bar-series-views/side-by-side-stacked-bar-chart?p=netframework) chart at runtime.
 
+![Side-by-side stacked bar sample](images/side-by-side-stacked-bar-chart.png)
+
 Note that this series view type is associated with the [XY-Diagram](https://docs.devexpress.com/WindowsForms/5908/controls-and-libraries/chart-control/diagram/xy-diagram?p=netframework)
  type, and you should cast your [diagram](https://docs.devexpress.com/WindowsForms/DevExpress.XtraCharts.ChartControl.Diagram?p=netframework) object to this type, in order to access its specific options.
+
+## Files to Look At
+
+* [Form1.cs](./CS/SideBySideStackedBarChart/Form1.cs) (VB: [Form1.vb](./VB/SideBySideStackedBarChart/Form1.vb))
+
+## Documentation
+
+* [Side-by-Side Stacked Bar Chart](https://docs.devexpress.com/WindowsForms/7565/controls-and-libraries/chart-control/series-views/2d-series-views/bar-series-views/side-by-side-stacked-bar-chart)
+* [Chart Control - 2D Series Views](https://docs.devexpress.com/WindowsForms/2960/controls-and-libraries/chart-control/series-views/2d-series-views)
+* [Chart Control Examples - Creating Charts](https://docs.devexpress.com/WindowsForms/2458/controls-and-libraries/chart-control/examples#creating)
+
+## More Examples
+
+* [How to sort stacked bars by total values using QualitativeScaleComparer](https://github.com/DevExpress-Examples/how-to-sort-stacked-bars-by-total-values-using-qualitativescalecomparer-t585190)
+* [How to create a Side-by-Side Full-Stacked Bar chart](https://github.com/DevExpress-Examples/how-to-create-a-side-by-side-full-stacked-bar-chart-e2093)
