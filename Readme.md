@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 
-# Chart Control for WinForms - How to Create a Side-by-Side Stacked Bar Chart
+# Chart for WinForms - How to Create a Side-by-Side Stacked Bar Chart
 
 The following example demonstrates how to create a [Side-by-Side Stacked Bar](https://docs.devexpress.com/WindowsForms/7565/controls-and-libraries/chart-control/series-views/2d-series-views/bar-series-views/side-by-side-stacked-bar-chart?p=netframework) chart at runtime.
 
