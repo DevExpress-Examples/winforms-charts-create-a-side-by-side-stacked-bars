@@ -29,7 +29,7 @@ Note that this series view type is associated with the [XY-Diagram](https://docs
 * [How to sort stacked bars by total values using QualitativeScaleComparer](https://github.com/DevExpress-Examples/how-to-sort-stacked-bars-by-total-values-using-qualitativescalecomparer-t585190)
 * [How to create a Side-by-Side Full-Stacked Bar chart](https://github.com/DevExpress-Examples/how-to-create-a-side-by-side-full-stacked-bar-chart-e2093)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=winforms-charts-create-a-side-by-side-stacked-bars&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=winforms-charts-create-a-side-by-side-stacked-bars&~~~was_helpful=no)
 
